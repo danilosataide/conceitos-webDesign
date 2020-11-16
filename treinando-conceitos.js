@@ -102,64 +102,63 @@ function MostrarHora()
    hora = agora.getHours() + ":"+agora.getMinutes() + ":" +agora.getSeconds()
    document.getElementById("idHora").innerHTML = hora
 }
-setInterval(MostrarHora, 1000)
+setInterval(MostrarHora, 1000);
 
-function CalcularMedia()
+$("#CalcularMedia").click(function ()
 {
-    document.getElementById("nota1").style.color = "#000000";
-    document.getElementById("nota2").style.color = "#000000";
-    document.getElementById("nota3").style.color = "#000000";
-    document.getElementById("nota1").style.fontWeight = "normal";
-    document.getElementById("nota2").style.fontWeight = "normal";
-    document.getElementById("nota3").style.fontWeight = "normal";
+    if (document.getElementById("idNomeAluno").value == "") {
+        window.alert("Por favor, informe seu nome!");
+        return false;
+    } else {
+        document.getElementById("nota1").style.color = "#000000";
+        document.getElementById("nota2").style.color = "#000000";
+        document.getElementById("nota3").style.color = "#000000";
+        document.getElementById("nota1").style.fontWeight = "normal";
+        document.getElementById("nota2").style.fontWeight = "normal";
+        document.getElementById("nota3").style.fontWeight = "normal";
 
-    let nomeAluno = document.getElementById("idNomeAluno");
-    console.log("Nome Aluno: " + nomeAluno.value)
+        let nomeAluno = document.getElementById("idNomeAluno");
+        console.log("Nome Aluno: " + nomeAluno.value)
 
-    var nota1 = document.getElementById("rangeNota1").value;
-    console.log("Nota 1: " + nota1)
-    var nota2 = document.getElementById("rangeNota2").value;
-    console.log("Nota 2: " + nota2)
-    var nota3 = document.getElementById("rangeNota3").value;
-    console.log("Nota 3: " + nota3)
+        // var nota1 = document.getElementById("rangeNota1").value;
+        var nota1 = parseFloat($("#rangeNota1").val());
+        console.log("Nota 1: " + nota1)
+        var nota2 = parseFloat($("#rangeNota2").val());
+        console.log("Nota 2: " + nota2)
+        var nota3 = parseFloat($("#rangeNota3").val());
+        console.log("Nota 3: " + nota3)
 
-    nota1 = parseFloat(nota1);
-    nota2 = parseFloat(nota2);
-    nota3 = parseFloat(nota3);
+        var nums = [];
+        nums.push(nota1, nota2, nota3);
+        var indMenor = 0;
+        var menor = 0;
 
-    var nums = [];
-    nums.push(nota1, nota2, nota3);
-    var maior1 = nums[0];
-    var maior2 = nums[0];
-    var indMenor = 0;
-    var menor = 0;
-
-    var menor = nums[0];
-    for(var i = 0; i < 3; i++) {
-        if(nums[i] < menor) {
-            menor = nums[i]
-            indMenor = i;
+        var menor = nums[0];
+        for(var i = 0; i < 3; i++) {
+            if(nums[i] < menor) {
+                menor = nums[i]
+                indMenor = i;
+            }
         }
-    }
-    var txt;
-    for(var i = 0; i < 3; i++) {
-        if(i != indMenor) {
-            txt = "nota"+(i+1);
-            document.getElementById(txt).style.color = "#0069D9";
-            document.getElementById(txt).style.fontWeight = "bold";
+        var txt;
+        for(var i = 0; i < 3; i++) {
+            if(i != indMenor) {
+                txt = "nota"+(i+1);
+                document.getElementById(txt).style.color = "#0069D9";
+                document.getElementById(txt).style.fontWeight = "bold";
+            }
         }
+
+        console.log("indMenor: " + indMenor + " Menor: "+menor);
+        var pos = nums.indexOf(menor);
+        var removedNum = nums.splice(pos, 1);
+
+        var media = (nums[0] + nums[1])/2;
+
+        $("#resultadoMedia").val(media); 
+        document.getElementById("media").style.display = "block";
     }
-
-    console.log("indMenor: " + indMenor + " Menor: "+menor);
-    var pos = nums.indexOf(menor);
-    var removedNum = nums.splice(pos, 1);
-
-    var media = (nums[0] + nums[1])/2;
-
-    document.getElementById("resultadoMedia").value = media;
-    document.getElementById("media").style.display = "block";
-
-}
+})
 
 // document.getElementById("rangeNota1").addEventListener("click", function(){
 //     document.getElementById("nota1").innerHTML = document.getElementById("rangeNota1").value
@@ -176,4 +175,4 @@ function CalcularMedia()
 function mostrarNota(num) {
     console.log("rangeNota"+num)
     document.getElementById("nota"+num).innerHTML = document.getElementById("rangeNota"+num).value;
-};//End Function
+}//End Function
