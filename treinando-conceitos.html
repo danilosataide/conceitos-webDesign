@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treinando Conceitos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="./treinando-conceitos.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="alert alert-secondary" role="alert">
+            <p>Danilo da Silva Ataide RA 200886 CP100TIM2 - Web Design</p>
+            Treinando Conceitos
+            <strong>
+                HTML/ Bootstrap/ JavaScript/JQuery
+            </strong>
+            <p id="idHora"></p>
+        </div>
+
+        <form id="idFormulario" autocomplete="off" action="javascript:CadastrarCliente();">
+            <fieldset>
+                <legend>Exercício 1</legend>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="idNome">Nome</label>
+                        <input title="Nome" type="text" class="form-control" id="idNome" placeholder="Informe seu nome" autofocus required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="idEmail">Email</label>
+                        <input title="Email" type="email" class="form-control" id="idEmail" placeholder="Informe seu email">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="idTelefone">Telefone</label>
+                        <input title="Telefone" type="tel" class="form-control" id="idTelefone" pattern="[0-9]{4}-[0-9]{4}" placeholder="Informe seu telefone">
+                        <small>Formato: 1234-5678</small>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="idSenha">Senha</label>
+                        <input title="Senha" type="password" class="form-control" id="idSenha" placeholder="Informe sua senha">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="idEstadoDestino">Estado de Destino</label>
+                        <select title="Estado de Destino" id="idEstadoDestino" class="form-control" name="estadoDestino">
+                            <option selected disabled value="">Selecione um Estado</option>
+                            <optgroup label="Região Sudeste">
+                                <option value="ES">Espírito Santo</option>
+                                <option value="MG">Minas Gerais</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="SP">São Paulo</option>
+                            </optgroup>
+                            <optgroup label="Região Norte">
+                                <option value="AC">Acre</option>
+                                <option value="AP">Amapá</option>
+                                <option value="AM">Amazonas</option>
+                                <option value="PA">Pará</option>
+                                <option value="RO">Rondônia</option>
+                                <option value="RR">Roraima</option>
+                                <option value="TO">Tocantins</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <p>Esportes Preferidos</p>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="idCorrida" value="Corrida" name="esportes" checked>
+                            <label class="form-check-label" for="idCorrida">Corrida</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="idMergulho" value="Mergulho" name="esportes" checked>
+                            <label class="form-check-label" for="idMergulho">Mergulho</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="idEquitação" value="Equitação" name="esportes" checked disabled>
+                            <label class="form-check-label" for="idEquitação">Equitação</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label>Quanto gosta de praticar esportes (0 a 10)?</label>
+                        <input id="rangeEsportes" title="Quanto gosta de praticar esportes (0 a 10)?" type="range" value="0" min="0" max="10" step="0.5">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="produtocolor">Selecione a cor do produto: </label>
+                        
+                        <input type="color" id="produtocolor">
+                    </div>
+                    
+                    <div class="form-group col-md-12">
+                        <p>Escolha o período de entrega do Produto: </p>
+                        <label for="horarioMaximo">Horário máximo</label> 
+                        <input type="time" id="horarioMaximo" class="mr-2">
+                        <label for="semana"></label> 
+                        <input type="week" id="semana">
+                    </div>
+                </div>
+
+                <div class="form-row" style="justify-content: center;">
+                    <input type="submit" value="Cadastrar Cliente" class="btn btn-primary mr-2">  
+                    <input type="reset" value="Limpar dados" class="btn btn-primary">
+                </div>
+                <br>
+                <div class="form-row" id="cadastro" style="display: none;">
+                    <div class="form-group col-md-12">
+                        <label for="descricaoCadastro">Informações de cadastro do cliente </label>
+                        <textarea name="descricaoCadastro" id="descricaoCadastro" rows="11" class="form-control" readonly></textarea>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+        <hr>
+        <form id="idFormularioNotas" autocomplete="off" action="javascript:CalcularMedia();">
+            <fieldset>
+                <legend>Exercício 2</legend>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="idNomeAluno">Nome</label>
+                        <input title="Nome" type="text" class="form-control" id="idNomeAluno" placeholder="Informe o nome do aluno" autofocus required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label>Nota 1: </label>
+                        <input onmousemove="mostrarNota(1)" id="rangeNota1" title="Nota 1" type="range" value="0" min="0" max="10" step="0.1" required>
+                        <p id="nota1">0</p>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Nota 2: </label>
+                        <input onmousemove="mostrarNota(2)" id="rangeNota2" title="Nota 2" type="range" value="0" min="0" max="10" step="0.1" required>
+                        <p id="nota2">0</p>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Nota 3: </label>
+                        <input onmousemove="mostrarNota(3)" id="rangeNota3" title="Nota 3" type="range" value="0" min="0" max="10" step="0.1" required>
+                        <p id="nota3">0</p>
+                    </div>
+                </div>
+
+                <div class="form-row" style="justify-content: center;">
+                    <input type="submit" value="Calcular Média" class="btn btn-primary mr-2">  
+                    <input type="reset" value="Limpar dados" class="btn btn-primary">
+                </div>
+                <br>
+                <div class="form-row" id="media" style="display: none;">
+                    <div class="form-group col-md-12">
+                        <label for="resultadoMedia">Média Aritmética das Duas Maiores Notas</label>
+                        <input title="Média Aritmética das Duas Maiores Notas" type="text" class="form-control" id="resultadoMedia" disabled>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+<script src="treinando-conceitos.js"></script>
+</body>
+</html>
